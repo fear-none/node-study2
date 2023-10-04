@@ -10,7 +10,8 @@ block content
         th 글 날짜
       each writing in list 
         tr 
-          td= writing.title 
+          td
+            a(href=`/detail/${writing.id}`)= writing.title 
           td= writing.contents 
           td= writing.date
   else 

@@ -48,13 +48,17 @@ app.post("/write", (req, res) => {
   connection.query(sql, params, function (error, results) {
     if (error) throw error;
     console.log("insert success");
-    res.redirect("/detail");
-    // res.redirect(`/detail/${results.insertId}`);
+    res.redirect(`/detail/${results.insertId}`);
   });
 });
 
-app.get("/detail", (req, res) => {
-  res.send("detail");
+app.get("/detail/:id", (req, res) => {
+  const id = req.params.id;
+  const sql = "SELECT * FROM WRITINGS WHERE ID = ?";
+  connection.query(sql, id, function (error, results) {
+    if (error) throw error;
+    res.render("detail", { detail: results[0] });
+  });
 });
 
 app.listen(3000, () => {
