@@ -25,7 +25,11 @@ const connection = mysql.createConnection({
 // middleware
 // GET home page
 app.get("/", (req, res) => {
-  res.render("main");
+  const sql = "SELECT * FROM WRITINGS";
+  connection.query(sql, function (error, results, fields) {
+    if (error) throw error;
+    res.render("main", { list: results });
+  });
 });
 
 app.get("/write", (req, res) => {

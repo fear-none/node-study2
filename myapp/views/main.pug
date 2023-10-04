@@ -3,6 +3,15 @@ extends layout.pug
 block content 
   h1 메인 페이지
   if list 
-    list 
+    table 
+      tr 
+        th 글 제목
+        th 글 내용
+        th 글 날짜
+      each writing in list 
+        tr 
+          td= writing.title 
+          td= writing.contents 
+          td= writing.date
   else 
     p 작성된 글이 없습니다.
