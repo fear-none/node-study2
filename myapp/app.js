@@ -18,7 +18,7 @@ app.set("view engine", "pug");
 const connection = mysql.createConnection({
   host: "127.0.0.1",
   user: "root",
-  password: "secret",
+  password: "",
   database: "test",
 });
 
@@ -33,10 +33,24 @@ app.get("/write", (req, res) => {
 });
 
 app.post("/write", (req, res) => {
+  // request 안에 있는 내용을 처리
+  // request.body
   const title = req.body.title;
   const contents = req.body.contents;
 
-  res.render("detail", {});
+  // mysql에 저장
+  const sql = "INSERT INTO WRITINGS(TITLE, CONTENTS) VALUES(?, ?)";
+  const params = [title, contents];
+  connection.query(sql, params, function (error, results) {
+    if (error) throw error;
+    console.log("insert success");
+    res.redirect("/detail");
+    // res.redirect(`/detail/${results.insertId}`);
+  });
+});
+
+app.get("/detail", (req, res) => {
+  res.send("detail");
 });
 
 app.listen(3000, () => {
