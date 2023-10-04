@@ -1,5 +1,6 @@
 import express from "express";
 import path from "path";
+import mysql from "mysql";
 
 const __dirname = path.resolve();
 
@@ -12,6 +13,14 @@ app.use(express.urlencoded({ extended: true })); // for parsing application/x-ww
 // view engine setup
 app.set("views", __dirname + "/views");
 app.set("view engine", "pug");
+
+// mysql connect
+const connection = mysql.createConnection({
+  host: "127.0.0.1",
+  user: "root",
+  password: "secret",
+  database: "test",
+});
 
 // middleware
 // GET home page
