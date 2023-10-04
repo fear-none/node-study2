@@ -84,6 +84,17 @@ app.post("/edit/:id", (req, res) => {
   });
 });
 
+app.post("/delete/:id", (req, res) => {
+  const id = req.params.id;
+
+  const sql = "DELETE FROM WRITINGS WHERE ID = ?";
+  connection.query(sql, id, function (error, results) {
+    if (error) throw error;
+    console.log("delete success");
+    res.redirect("/");
+  });
+});
+
 app.listen(3000, () => {
   console.log("listening on port 3000");
 });
