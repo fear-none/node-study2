@@ -61,6 +61,29 @@ app.get("/detail/:id", (req, res) => {
   });
 });
 
+app.get("/edit/:id", (req, res) => {
+  const id = req.params.id;
+  const sql = "SELECT * FROM WRITINGS WHERE ID = ?";
+  connection.query(sql, id, function (error, results) {
+    if (error) throw error;
+    res.render("detail", { edit: results[0] });
+  });
+});
+
+app.post("/edit/:id", (req, res) => {
+  const id = req.params.id;
+  const title = req.body.title;
+  const contents = req.body.contents;
+
+  const sql = "UPDATE WRITINGS SET TITLE = ?, CONTENTS = ? WHERE id = ?";
+  const params = [title, contents, id];
+  connection.query(sql, params, function (error, results, fields) {
+    if (error) throw error;
+    console.log("update success");
+    res.redirect(`/detail/${id}`);
+  });
+});
+
 app.listen(3000, () => {
   console.log("listening on port 3000");
 });

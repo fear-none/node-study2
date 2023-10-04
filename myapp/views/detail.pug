@@ -1,7 +1,19 @@
 extends layout.pug 
 
 block content 
-  h1 상세 페이지
-  p 글 제목: #{detail.title}
-  p 글 내용: #{detail.contents}
-  p 글 날짜: #{detail.date}
+  if detail 
+    //- detail
+    h1 상세 페이지
+    p 글 제목: #{detail.title}
+    p 글 내용: #{detail.contents}
+    p 글 날짜: #{detail.date}
+    a(href=`/edit/${detail.id}`) 글 수정
+  else 
+    //- edit
+    h1 상세 페이지 수정
+    form(action=`/edit/${edit.id}`, method="post")
+      p 글 제목: 
+        input(type="text", name="title", value=`${edit.title}`)
+      p 글 내용:
+        textarea(name="contents", cols="30", rows="10")= edit.contents
+      input(type="submit", value="수정 완료")
