@@ -25,6 +25,9 @@ const connection = mysql.createConnection({
   database: "test",
 });
 
+// static files
+app.use(express.static(__dirname + "/public"));
+
 // middleware
 // GET home page
 app.get("/", (req, res) => {
