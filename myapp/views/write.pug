@@ -1,13 +1,14 @@
 extends layout.pug
 
 block content 
-  h1 글 작성 페이지입니다.
-  form(action="/write", method="post") 
-    label(for="title") 제목
-    input(type="text", id="title", name="title")
-    br
-    label(for="contents") 내용
-    textarea(name="contents", cols="30", rows="10") 
-    br
-    //- input submit
-    input(type="submit", value="글 작성 완료")
+  h1(class="py-3") 글 작성 페이지입니다.
+  div(class="container")
+    form(action="/write", method="post") 
+      label(for="title", class="form-label") 제목
+      input(type="text", class="form-control", id="title", name="title", required)
+      br
+      label(for="contents", class="form-label") 내용
+      textarea(name="contents", class="form-control", cols="30", rows="10", required)
+      br
+      //- input submit
+      input(type="submit", class="btn btn-primary", value="글 작성 완료", class="float-end")

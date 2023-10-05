@@ -1,18 +1,18 @@
 extends layout.pug 
 
 block content 
-  h1 메인 페이지
+  h1(class="py-3") 메인 페이지
   if list 
-    table 
+    table(class="table") 
       tr 
         th 글 제목
-        th 글 내용
+        //- th 글 내용
         th 글 날짜
       each writing in list 
         tr 
           td
-            a(href=`/detail/${writing.id}`)= writing.title 
-          td= writing.contents 
+            a(href=`/detail/${writing.id}`, class="text-decoration-none")= writing.title 
+          //- td= writing.contents 
           td= writing.date
   else 
     p 작성된 글이 없습니다.
