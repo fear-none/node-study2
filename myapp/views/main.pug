@@ -13,6 +13,6 @@ block content
           td
             a(href=`/detail/${writing.id}`, class="text-decoration-none")= writing.title 
           //- td= writing.contents 
-          td= writing.date
+          td= `${writing.date.getFullYear()}.${String(writing.date.getMonth()).padStart(2, '0')}.${String(writing.date.getDate()).padStart(2, '0')}`
   else 
     p 작성된 글이 없습니다.

@@ -5,7 +5,7 @@ block content
     //- detail
     h1(class="py-3") 상세 페이지
     p #{detail.title}
-    p #{detail.date}
+    p #{`${detail.date.getFullYear()}.${String(detail.date.getMonth()).padStart(2, '0')}.${String(detail.date.getDate()).padStart(2, '0')}`}
     hr
     p #{detail.contents}
     hr
